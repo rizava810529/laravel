@@ -6,6 +6,7 @@ use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MatriculaController;
+use App\Http\Controllers\AsistenciaController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -61,3 +62,13 @@ Route::controller(MatriculaController::class)->group(
 );
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Route::controller(AsistenciaController::class)->group(
+
+    function () {
+        Route::get('/asistencias', 'index');
+        Route::get('/asistencia/{id}','show');
+        Route::post('/asistencia/{id}', 'store');
+        Route::put('/asistencia/{id}', 'update');
+        Route::delete('/asistencia/{id}', 'destroy');
+    }
+);
