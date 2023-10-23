@@ -5,11 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\MatriculaController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 Route::controller(AlumnoController::class)->group(function () {
     Route::get('/alumnos', 'index');
     Route::get('/alumno/{id}', 'show');
@@ -23,7 +24,7 @@ Route::controller(AlumnoController::class)->group(function () {
     // Ruta para registrar la asistencia
     Route::post('/alumno/{alumnoId}/registrar-asistencia/{cursoId}', 'registrarAsistencia');
 });
-
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 Route::controller(DocenteController::class)->group(
 
@@ -36,7 +37,7 @@ Route::controller(DocenteController::class)->group(
     }
 );
 
-
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 Route::controller(CursoController::class)->group(
 
     function () {
@@ -47,3 +48,16 @@ Route::controller(CursoController::class)->group(
         Route::delete('/curso/{id}', 'destroy');
     }
 );
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Route::controller(MatriculaController::class)->group(
+
+    function () {
+        Route::get('/matriculas', 'index');
+        Route::get('/matricula/{id}','show');
+        Route::post('/matricula/{id}', 'store');
+        Route::put('/matricula/{id}', 'update');
+        Route::delete('/matricula/{id}', 'destroy');
+    }
+);
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
