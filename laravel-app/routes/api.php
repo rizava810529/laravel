@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\CursoController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -32,5 +33,17 @@ Route::controller(DocenteController::class)->group(
         Route::post('/docente/{id}', 'store');
         Route::put('/docente/{id}', 'update');
         Route::delete('/docente/{id}', 'destroy');
+    }
+);
+
+
+Route::controller(CursoController::class)->group(
+
+    function () {
+        Route::get('/cursos', 'index');
+        Route::get('/curso/{id}','show');
+        Route::post('/curso/{id}', 'store');
+        Route::put('/curso/{id}', 'update');
+        Route::delete('/curso/{id}', 'destroy');
     }
 );
