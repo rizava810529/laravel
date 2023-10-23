@@ -8,11 +8,34 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\AsistenciaController;
 
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-Route::controller(AlumnoController::class)->group(function () {
+
+/* Route::get('/api/alumnos', 'AlumnoController@index');
+Route::get('/api/alumnos/{id}', 'AlumnoController@show');
+Route::post('/api/alumnos', 'AlumnoController@store');
+Route::put('/api/alumnos/{id}', 'AlumnoController@update');
+Route::delete('/api/alumnos/{id}', 'AlumnoController@destroy');
+Route::post('/api/alumnos/{alumnoId}/cursos/{cursoId}', 'AlumnoController@matricula');
+Route::post('/api/alumnos/{alumnoId}/asistencia', 'AlumnoController@registrarAsistencia');
+ */
+
+/* 
+ Route::resource('alumnos', AlumnoController::class);
+ Route::resource('docentes', DocenteController::class);
+ Route::resource('cursos', CursoController::class);
+ Route::resource('matriculas', MatriculaController::class);
+ Route::resource('asistencias', AsistenciaController::class);
+ */
+
+ Route::controller(AlumnoController::class)->group(function () {
     Route::get('/alumnos', 'index');
     Route::get('/alumno/{id}', 'show');
     Route::post('/alumno', 'store');
@@ -20,11 +43,12 @@ Route::controller(AlumnoController::class)->group(function () {
     Route::delete('/alumno/{id}', 'destroy');
     
     // Ruta para matricular al alumno en un curso
-    Route::post('/alumno/{alumnoId}/matricular/{cursoId}', 'matricularAlumnoEnCurso');
+    Route::post('/alumno/{alumnoId}/matricular/{cursoId}', 'm */atricularAlumnoEnCurso');
+
     
     // Ruta para registrar la asistencia
     Route::post('/alumno/{alumnoId}/registrar-asistencia/{cursoId}', 'registrarAsistencia');
-});
+}); 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 Route::controller(DocenteController::class)->group(

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\AlumnoResource;
 use App\Models\Curso;
 
+
 class AlumnoController extends Controller
 {
     
@@ -63,21 +64,21 @@ class AlumnoController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {
-        // Validar los datos ingresados en el formulario
-        $request->validate([
-            'nombre' => 'required',
-            'email' => 'required|email|unique:alumnos,email,'.$id,
-        ]);
+{
+    // Validar los datos ingresados en el formulario
+    $request->validate([
+        'nombre' => 'required',
+        'email' => 'required|email|unique:alumnos,email,' . $id,
+    ]);
 
-        // Actualizar los datos del alumno en la base de datos
-        $alumno = Alumno::find($id);
-        $alumno->nombre = $request->nombre;
-        $alumno->email = $request->email;
-        $alumno->save();
+    // Actualizar los datos del alumno en la base de datos
+    Alumno::where('id', $id)->update([
+        'nombre' => $request->nombre,
+        'email' => $request->email,
+    ]);
 
-        return redirect('/alumnos')->with('success', 'Alumno actualizado con éxito.');
-    }
+    return redirect('/alumnos')->with('success', 'Alumno actualizado con éxito.');
+}
 
 
     /**
